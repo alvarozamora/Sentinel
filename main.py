@@ -19,9 +19,15 @@ for ticker in tickers:
     else:
         if ticker not in db.keys():
             db[ticker] = []
+
+        new = 0
         for date in yticker.options:
             if db is not None and date not in db[ticker]:
                 print(f'New option expiry date found for {ticker}: {date}')
                 db[ticker].append(date)
+                new += 1
+        if new == 0:
+            print(f"No new option expiry dates found for {ticker}")
+            
 
-        save_database(db)
+save_database(db)
